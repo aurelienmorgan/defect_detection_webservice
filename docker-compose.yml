@@ -1,0 +1,60 @@
+version: "3.7"
+
+services:
+
+    defect-api-service:
+        # build the container, looking into the Dockerfile at the bellow relative path
+        build: ./flask_api
+        container_name: flask_api
+        image: flask_api:v0-phil
+        restart: always
+        # A place for us to define environment variables for the container
+        environment:
+            - PYTHONUNBUFFERED=1 # stdout not buffered
+            - APP_NAME=MyFlaskApi
+            - MEDIA_FOLDER=/api/api/media
+        volumes:
+            - media_volume:/api/api/media:rw
+        # Exposes internal ports to other containers and services on the same network
+        expose:
+            - 9090
+
+    web_app:
+        # build the container, looking into the Dockerfile at the bellow relative path
+        build: ./flask_app
+        container_name: flask_app
+        image: flask_app:v0-p
+        restart: always
+        # A place for us to define environment variables for the container
+        environment:
+            - APP_NAME=MyFlaskApp
+            - STATIC_FOLDER=/app/app/static
+            - MEDIA_FOLDER=/app/app/media
+        volumes:
+            - static_volume:/app/app/static:ro
+            - media_volume:/app/app/media:rw
+        # Exposes internal ports to other containers and services on the same network
+        expose:
+            - 8080
+        # declare service dependencies
+        depends_on:
+            - defect-api-service
+
+    http_server:
+        build: ./http_server
+        container_name: http_server
+        image: http_server:v0-guk
+        restart: always
+        volumes:
+            - static_volume:/home/web_app/static:ro
+            - media_volume:/home/web_app/media:ro
+        # expose ports to the outside world,
+        # mappes port 80 on the host machine to port 80 of our Nginx container.
+        ports:
+            - "80:2020"
+        depends_on:
+            - web_app
+
+volumes:
+    static_volume:
+    media_volume:

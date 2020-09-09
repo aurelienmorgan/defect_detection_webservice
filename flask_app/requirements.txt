@@ -1,0 +1,8 @@
+# Flask Framework
+flask
+
+# Requests
+requests
+
+# uWSGI Application Server
+uwsgi

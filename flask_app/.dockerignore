@@ -1,0 +1,8 @@
+__pycache__/
+app/__pycache__/
+app/media-offline/
+app/static/images/banner.xcf
+app/static/images/docker_network.xcf
+app/static/images/target_blank.xcf
+app/static/images/target_blank.png
+*.proj

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+    <! --
+        jinja2 if-else conditional statement
+        (using the "page_title" variable passed-in with the render-template" call)
+    -->
+    {% if page_title %}
+    <title>RESTfull demo - {{ page_title }} </title>
+    {% else %}
+    <title>RESTfull demo</title>
+    {% endif %}
+
+    <! --
+        jinja2 url retrieval using the Flsk "url_for" function
+    -->
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='styles/main.css') }}">
+
+</HEAD>
+<body>
+    <noscript>
+        <style type="text/css">
+            .pagecontainer {
+                display: none;
+            }
+        </style>
+        <div class="noscriptmsg">
+            You don't have javascript enabled. Good luck with that.
+        </div>
+    </noscript>
+
+    <table class="banner" width="100%" bgcolor="" valign="top">
+        <tr>
+            <td style="vertical-align: top; text-align: left;">
+                <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/surface_defect_detector.png') }}"
+                     width="400px" /></a>
+            </td>
+            <td style="vertical-align: bottom; text-align: right;">
+                <img src="{{ url_for('static', filename='images/webservice_demo.png') }}"
+                     width="175px" />
+            </td>
+        </tr>
+    </table>
+
+    <div class="pagecontainer">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer">
+        <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a> - February 2020
+    </div>
+
+</body>
+</HTML>
+
+

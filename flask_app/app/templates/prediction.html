@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<h1>Prediction</h1>
+
+<img src="{{ url_for( 'mediafiles', filename = prediction['filename'] ) }}"
+     alt="{{ prediction['filename'] }}" width="1600" height="256"
+     class="center" />
+
+<br />
+<div class="prediction">
+    Probability that there is a defect :
+    <span class="underline_text">
+        {{ (prediction['max_prob']*100)|round(2, 'floor') }}%
+    </span>.
+    <br />
+    The above green dividing lines are a visual aid highlighting
+    all the image pixels having a defect probability higher than
+    <span class="underline_text">
+        {{ (prediction['defect_thresh']*100)|round(2, 'floor') }}%
+    </span>.
+</div>
+
+{% endblock %}

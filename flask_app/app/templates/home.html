@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<h1>Home Page</h1>
+
+Welcome to this demonstration platform &nbsp; !
+<br />
+<br />
+The architecture employed here is made-up of 3 Docker containers as follows :
+<br />
+<img src="{{ url_for('static', filename='images/docker_network.png') }}"
+     width="850px" class="center" />
+<br />
+The key element here is the <span class="service_name">&nbsp;defect-api-service&nbsp;</span>
+which is responsible for the generation of the prediction.
+Given an input image, it operates the surface defect detection
+and returns an augmented image and probability informations.
+<br />
+<br />
+<center>
+    <a class="large" href='upload' target="_blank">
+    Upload &nbsp;a &nbsp;steel sheet &nbsp;image &nbsp;for &nbsp;surface defect detection</a>
+</center>
+<br />
+
+
+
+{% endblock %}
+

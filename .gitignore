@@ -1,0 +1,16 @@
+
+.vs/
+
+images/web_app.xcf
+flask_app/__pycache__/
+flask_app/app/__pycache__/
+flask_app/app/media-offline/*
+flask_app/app/static/images/banner.xcf
+flask_app/app/static/images/docker_network.xcf
+flask_app/app/static/images/target_blank.xcf
+flask_app/app/static/images/target_blank.png
+flask_app/*.proj
+flask_api/__pycache__/
+flask_api/api/utils/__pycache__/
+docker_archives/
+README.txt

@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<h1>Upload Page</h1>
+
+<script src="{{ url_for('static', filename='jquery/2.0.0/jquery.min.js') }}"></script>
+
+Please select the image of a steel sheet you want to analyse for defect detection :<br />
+<form action="" method=post enctype=multipart/form-data>
+    <p>
+        <input type=file name=file id="image-file" />
+        <input type=submit value=Upload disabled="disabled" id="upload-button" />
+    </p>
+</form>
+<div id="info" {{ info_class }}>{{ info_message }}</div>
+
+<script>
+    var _URL = window.URL || window.webkitURL;
+    $("#image-file").on("change", function() {
+        var file_input, file;
+        file_input = $(this);
+        if ((file = file_input[0].files[0])) {
+            // validate file size
+            var numb = file.size / 1024;
+            numb = numb.toFixed(2);
+            if(numb > 200) {
+                //alert('too big, maximum is 200 KB. You file size is: ' + numb +' KB');
+                $("#info").attr('class', "error");
+                $("#info").html(
+                    'too big, maximum is 200 KB. You file size is: ' + numb +' KB' +
+                    ' [' + file_input.val().replace(/C:\\fakepath\\/, '') + '].'
+                    );
+                file_input.val('');
+                $("#upload-button").prop('disabled', true);
+                return;
+            } else {
+                //alert("You're good to go, your file has " + numb + " KB")
+                $("#info").attr('class', "success");
+                $("#info").html("");
+            }
+
+            // validate image dimensions
+            var img = new Image();
+            var objectUrl = _URL.createObjectURL(file);
+            img.onload = function () {
+                //alert(this.width + " " + this.height);
+                if (this.width == 1600 && this.height == 256) {
+                    _URL.revokeObjectURL(objectUrl);
+                    $("#info").attr('class', "success");
+                    $("#info").html("");
+                    $("#upload-button").prop('disabled', false);
+                } else {
+                    $("#info").attr('class', "error");
+                    $("#info").html(
+                        "not a valid image size: " + this.width + "x" + this.height +
+                        ' [' + file_input.val().replace(/C:\\fakepath\\/, '') + '].'
+                        );
+                    file_input.val('');
+                    $("#upload-button").prop('disabled', true);
+                    return;
+                }
+            };
+            img.onerror = function() {
+                //alert( "not a valid file: " + file.type);
+                $("#info").attr('class', "error");
+                $("#info").html(
+                    "not a valid file: " + file.type +
+                    ' [' + file_input.val().replace(/C:\\fakepath\\/, '') + '].'
+                    );
+                file_input.val('');
+                $("#upload-button").prop('disabled', true);
+                return;
+            };
+            img.src = objectUrl;
+        }
+
+    });
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
