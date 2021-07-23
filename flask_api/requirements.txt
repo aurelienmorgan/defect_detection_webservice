@@ -1,17 +1,21 @@
 # Tensorflow & keras (CPU-only, here)
 tensorflow==1.14.0
 keras==2.2.4
+h5py==2.10.0 # @see https://github.com/tensorflow/tensorflow/issues/44467
 numpy==1.14.5
+scipy==1.5.4 # to avoid compat. issues with numpy, etc. @see https://github.com/numpy/numpy/issues/12785
+pandas==1.0.5
 setuptools==41.0.0
 
 segmentation-models
 
 
-opencv-python
+opencv-python==4.2.0.34 # newer versions take forever to install (unless you upgrade pip and so on.. @see https://github.com/opencv/opencv-python#backward-compatibility
+networkx==2.5.1
 scikit-image==0.15.0
 
 tornado # required by matplotlib backend 'backend_webagg' (others either fail on Linux or behave unstably when saving without displaying)
-matplotlib
+matplotlib==3.2.2
 
 # Flask Framework
 flask

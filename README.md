@@ -45,7 +45,7 @@ of the detected defectuous area (if any)
 
 For details on the model architecture and training
 as well as on what the reported probabilities do measure,
-please kindly refer to <a alt="jupyter notebook" href="https://htmlpreview.github.io/?https://github.com/aurelienmorgan/defect_detection_webservice/blob/master/notebook/model.html?uncache=654645">this walkthough Jupyter Notebook</a>.
+please kindly refer to <a href="https://htmlpreview.github.io/?https://github.com/aurelienmorgan/defect_detection_webservice/blob/master/notebook/model.html?uncache=654645">this walkthough Jupyter Notebook</a>.
 
 <br />
 
@@ -56,6 +56,6 @@ KEYWORDS :
 	```Nginx```, ```uwsgi```, ```Gunicorn```,
 	```container```, ```Docker```,
 	```Flask```, ```REST api```, ```webservice```,
-	```Tensorflow```, ```Keras```, ```U-Net```,
-	```segmentation model```, ```data augmentation```,
+	```Tensorflow```, ```Keras```, ```Computer Vision```, ```CNN```,
+	```U-Net```, ```segmentation model```, ```data augmentation```,
 	```OpenCV```
